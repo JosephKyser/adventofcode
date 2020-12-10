@@ -15,7 +15,14 @@ with open('input','r') as file:
 
     adapt = {} #{Int:List[Int]}
 
-    memo= [-1 for i in range(0,187)][:]
+    memo= [-1 for i in range(0,187)][:] #initializes a list of -1s
+
+    '''
+    adapt is a dict that store a voltage to a list of possible connections from that voltage
+
+    if voltage = [1,2,3,4]
+    then adapt = {1:[2,3,4],2:[3,4],3:[4]}
+    '''
 
     for volts in sortedList:
         potential = []
@@ -27,13 +34,14 @@ with open('input','r') as file:
 
 
     def Helper(voltage) -> int:
-        if 186 == voltage:
+        if 186 == voltage: #Found a valid combination
             return 1
-        elif memo[voltage] >= 0:
+        elif memo[voltage] >= 0: #Found a valid combination of a subproblem that already occurred
             return memo[voltage]
         else:
             memo[voltage] = sum([Helper(i) for i in adapt[voltage]])
             return memo[voltage]
+    # Essentially, you run recursion on all numbers in the list of possible connections and add them up.
 
     Helper(0)
     print(memo[0])
