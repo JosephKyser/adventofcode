@@ -27,6 +27,8 @@ with open('input','r') as file:
     manhattan = abs(distance["N"]-distance["S"]) + abs(distance["E"]-distance["W"])
     print(manhattan)
 
+#part2
+
     waypoint = [10,0,0,1] #ESWN distances
 
     distance = [0,0,0,0] #ESWN
